@@ -1,0 +1,17 @@
+La page dédié a l'utilisateur est INdex.php a la racine, toutes les pages d'affichage se trouvent a la racine, les librairies, pages de tests et de vérification dans le include.
+
+nettoyage et HFSQL sont utilisé pour les objets nettoyages, afin de se connecter et faire quelques actions sur la Bdd qui seras déterminé dans index.php.
+
+test.php n'est pas sensé être visible pour les utilisatuers, c'est la page qui me permet de tester mes fonctions et affichages sans risque donc a enlever une fois fini.
+
+gestion.php est la page de gestion de la bdd (choisir la bon entreprise et lancer le processus de nettoyage) mais il est impossible de transporter l'objet nettoyage avec une session
+donc j'utilise des sessions pour savoir le reconstruire (a voir si il existe une meilleurs façon de faire)
+
+initNettoyage est un fichier qui initialise un nettoyage avec toutes les tables (la création n'est pas faites de façonn dynamique pour le moment) donc en cas de pb avec le PDO et sql ce seras
+l'une des 1ere choses a vérifier et il faudras le changer si jamais la Bdd change.
+
+Ce qu'il reste a faire :
+
+Le générateur de formulaire pour obtenir les infos sur le nettoyage avant de purger la BDD, le bouton de déconnexion.
+
+mise a jour formulaire vas afficher le message de validation et le tableau de comparaison
