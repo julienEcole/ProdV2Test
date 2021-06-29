@@ -31,7 +31,7 @@
 		public function __set($name,$value){//mon setter de mes différents attributs
 			switch ($name) {
 				case '_idCompany':	//opérationnel, peut être a changer car pas le bon procédé mais résultat équivalent
-					$this->_idCompany = $this->executerCommande(" SELECT Id from Company WHERE name = '".$value."'");	// = $this->getCompany($value); 
+					$this->_idCompany = $this->getCompany($value); 
 					break;
 				default:
 					echo("l'attribut que vous tentez de modifier est innacessible pour vous, vous n'avez pas les droits <br />");

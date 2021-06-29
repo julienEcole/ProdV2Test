@@ -1,4 +1,5 @@
 <?php //ce fichier sert uniquement a initialiser nettoyage.
+    //require("class/nettoyage");
     if(!include("class/nettoyage.php")){	//pas la peine de faire la suite si nettoyage est absent
     	throw new Exception("la librairie de nettoyage a été supprimé ou déplacé, veuillez ouviri le fichier initNettoyage et modifier le chmein d'accés a la ligne 2 ou replacer nettoyage a son emplacement d'origine.");
     }

@@ -1,6 +1,6 @@
 <?php
-    require"class/nettoyage.php";
     session_start();
+    include("class/nettoyage.php");
     // Vérifie qu'il provient d'un formulaire
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         

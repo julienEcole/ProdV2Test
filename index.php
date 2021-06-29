@@ -1,5 +1,8 @@
 <html>
-    <?php session_start(); ?>
+    <?php 
+        session_start();
+        require"includes/initNettoyage.php";
+    ?>
     <head>  
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link rel="stylesheet" href="includes/miseEnForme/style.css" />
@@ -34,11 +37,12 @@
         </form>
 
         <?php 
-            if(isset($_SESSION['serveur']) && isset($_SESSION['database']) /*&& isset($_SESSION['user']) && isset($_SESSION['password'])*/){
-                include("gestion.php");
+            if(isset($_SESSION['serveur']) && isset($_SESSION['database']) && isset($_SESSION['user']) /*&& isset($_SESSION['password'])*/){
+                
+                include("gestion.php"); //ma page qui gère le menu déroullant pour choisir une entreprise a nettoyer
             }
             if(isset($_SESSION['entreprise'])){
-                include("includes/initNettoyage.php");
+                include("miseAJourFormulaire.php"); //la pge qui est sensé afficher mon tableau comparatif
             }
         ?>
     </body>
