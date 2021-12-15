@@ -19,7 +19,7 @@ class HFSQL{
 		if(is_string($mdp)) {
 			$this->_mdp = $mdp;		//le mdp possède un nom un peu différent d'ou la sortie de la boucle et contrairement aux autres elle peut être vide
 			if($this->_nomServeur != "" &&  $this->_nomBdd != "") {		//pas la peine de tenter de se connecter si on a pas mis de nom de bdd ni de serveur
-				$dsn = "sqlsrv:Server=$this->_nomServeur\\SQLEXPRESS;Database=$this->_nomBdd";
+				$dsn = "sqlsrv:Server=$this->_nomServeur;Database=$this->_nomBdd";
 				try {
 					$this->_SQLPointer = new PDO ($dsn, $this->_nomUtilisateur, $this->_mdp);
 					$this->_SQLPointer->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

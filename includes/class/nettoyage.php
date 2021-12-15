@@ -179,6 +179,40 @@
 			return $result;					//array ($nomTables => $nbLignesSuppriméParLOperation,...	)
 		}
 
+		public function suppTout(){// TODO quand je ferai le formulaire de dévalidaion il faudras modifier cet fonction
+			$result = $this->getNbLignes();
+			$this->_bdd->_SQLPointer->beginTransaction();		//jusque la la fonction semble sûr
+			
+			
+			
+			foreach($this->_tables as $nomTable => $value){
+				
+				if($nomTable == "Company"){
+					$sqlCommande = "UPDATE Company SET removed = 1 WHERE Id = '$this->_idCompany'";
+				}else{
+					if($value['tableMere'] != "Company"){//TODO
+						$sqlCommande = "DELETE FROM ". 
+							$this->_bdd->_nomBdd.".dbo.$nomTable".
+							" WHERE  ".
+							"$nomTable.".$value['nomClefPrimaire']." in (SELECT ".$value['tableMere'].".Id FROM ".$value['tableMere'].")".
+							" and '".
+							$this->_idCompany."' in (SELECT ".$value['tableMere'].".Company FROM ".$value['tableMere'].")";//commande indirect
+					}
+					else{
+						$sqlCommande = "DELETE FROM ".
+							$this->_bdd->_nomBdd.".dbo.$nomTable
+							WHERE ".$this->_bdd->_nomBdd.".dbo.$nomTable.Company = '$this->_idCompany'";//commande direct opérationnel
+					}
+					//echo("$sqlCommande <br/>");
+				}
+				
+				$this->executerCommandeSansReturn($sqlCommande);				//la partie suppression pour une valeur					
+			}
+			
+			$this->_bdd->_SQLPointer->commit();
+			return $result;					//array ($nomTables => $nbLignesSuppriméParLOperation,...	)
+		}
+
 		public function afficheTableau(){	//opérationnel
 			echo("<table>");
 			echo("<tr> <td>Nom de la table </td>

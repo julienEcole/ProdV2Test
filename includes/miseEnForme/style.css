@@ -1,4 +1,4 @@
-input[type=text],input[type=password] {
+input[type=text], input[type=password], input[type=submit], input[type=button], button {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -6,13 +6,13 @@ input[type=text],input[type=password] {
 }
 
 input[type=submit] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
     background-color: forestgreen;
 }
 
-intut[type = submit]:hover {
+input[type=button], button {
+    width: 49%;
+}
+
+input[type = submit]:hover {
     cursor: pointer;
 }

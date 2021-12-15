@@ -15,3 +15,32 @@ Ce qu'il reste a faire :
 Le générateur de formulaire pour obtenir les infos sur le nettoyage avant de purger la BDD, le bouton de déconnexion.
 
 mise a jour formulaire vas afficher le message de validation et le tableau de comparaison
+
+Mes 2 classes :
+
+		HFSQL
+- _nomBDD : string;
+- _nomServeur : string;
+- _mdp : string;
+- _nomUtilisateur : string;
+- _SQLPointeur : PDO;
+- _ressource : PDOStatement;
+__construct(Serveur : string,Bdd = "test" : string,Utilisateur = "root" : string,mdp = "" : string) : HFSQL
++ preparer(Query : string) : void;
++ __get(value : string) : PDOStatement|string;
+
+		Nettoyage
+- _bdd : HFSQL;
+- _tables : array(array('tableMere' =>(nomTableMere : string),nomClefPrimaire => (Id : string),nbLignes => int));
+- _idCompany : string;
+- executerCommande(sqlCommande : string) : string|int;
+- executerCommandeSansReturn(sqlCommande : string) : void;
++ __construct(Serveur : string,Bdd = "test" : string,Utilisateur = "root" : string,mdp = "" : string) : Nettoyage;
++ AjouterTables(tables : array(string),tableMere = "Company" : string,nomClefPrimaire = "Id" : string) : void;
++ __get(value : string) : HFSQL|array(array('tableMere' =>(nomTableMere : string),'nomClefPrimaire' => (Id : string),'nbLignes' => int : int))|string;
++ __set(name : string,value : string) : void;
++ getCompany(nom : string) : string;
++ getNbLignes() : array(string => int);
++ getNbLignesRemoved(removed = 1 : int) : array(string => int);
++ suppLignes($removed = 1) : array(string => int);
++ afficheTableau() : void;

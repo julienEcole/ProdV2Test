@@ -1,11 +1,10 @@
 <html>
     <?php 
-        session_start();
-        require"includes/initNettoyage.php";
+        session_start(); 
     ?>
     <head>  
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link rel="stylesheet" href="includes/miseEnForme/style.css" />
+        <link rel="stylesheet" href="includes/miseEnForme/style.css" type="text/css"/>
         <title>Formulaire de connexion PHP/MySQL</title>
     </head>
     <body>
@@ -33,16 +32,23 @@
             Base de donnee : <input type="text" name="database" placeholder="Entrer le nom de la Bdd" /><br />
             Utilisateur : <input type="text" name="user" placeholder="Entrer votre utilisateur" /><br />
             mot de passe : <input type="password" name="password" placeholder="Entrez votre mot de passe" /><br />
-            <input type="submit" value="Submit" />
+            <?php
+                if(isset($_SESSION['serveur']) && isset($_SESSION['database']) && isset($_SESSION['user'])){
+                    echo("<input type=\"submit\" style=\"width: 70%;\" value=\"Connexion\"/> <a href=\"includes/deconnexion.php\"><input type=\"button\" value=\"Deconnexion\" style=\"width: 29%;\" ></a>");
+                }
+                else{
+                    echo("<input type=\"submit\" value=\"Connexion\" />");
+                }
+            ?>
         </form>
 
-        <?php 
-            if(isset($_SESSION['serveur']) && isset($_SESSION['database']) && isset($_SESSION['user']) /*&& isset($_SESSION['password'])*/){
-                
+        <?php
+            if(isset($_SESSION['serveur']) && isset($_SESSION['database']) && isset($_SESSION['user'])){
+                require"includes/initNettoyage.php";
                 include("gestion.php"); //ma page qui gère le menu déroullant pour choisir une entreprise a nettoyer
             }
             if(isset($_SESSION['entreprise'])){
-                include("miseAJourFormulaire.php"); //la pge qui est sensé afficher mon tableau comparatif
+                include("miseAJourFormulaire.php"); //la page qui est sensé afficher mon tableau comparatif
             }
         ?>
     </body>

@@ -1,6 +1,6 @@
 <?php 
 
-	include("includes/nettoyage.php");
+	include("includes/class/nettoyage.php");
 
 	echo"apres include <br />";
 
